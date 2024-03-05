@@ -25,68 +25,70 @@
 </head>
 
 <body>
-	<div class="top-header">
-		<h1 class="name">Nina Carducci</h1>
-		<div class="nav">
-			<ul>
-				<li><a href="#about">À propos</a></li>
-				<li><a href="#gallery">Galerie</a></li>
-				<li><a href="#services">Service</a></li>
-				<li><a href="#contact">Contact</a></li>
-				<li><a class="social-link" href="https://www.instagram.com/ninacarducci.photo/?hl=fr"
-						target="_blank"><img src="assets/images/instagram.png" alt="Logo Instagram"></a></li>
-			</ul>
+	<header>
+		<div class="top-header">
+			<h1 class="name">Nina Carducci</h1>
+			<div class="nav">
+				<ul>
+					<li><a href="#about">À propos</a></li>
+					<li><a href="#gallery">Galerie</a></li>
+					<li><a href="#services">Service</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li><a class="social-link" href="https://www.instagram.com/ninacarducci.photo/?hl=fr"
+							target="_blank"><img src="assets/images/instagram.png" alt="Logo Instagram"></a></li>
+				</ul>
+			</div>
 		</div>
-	</div>
-	<div id="header">
+		<div id="header">
 
-		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-					aria-current="true" aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-					aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-					aria-label="Slide 3"></button>
+			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+						class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+						aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+						aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<picture>
+							<source srcset="./assets/images/slider/ryoji-iwata-420.webp" media="(max-width: 420px)">
+							<source srcset="./assets/images/slider/ryoji-iwata-780.webp" media="(max-width: 780px)">
+							<img src="./assets/images/slider/ryoji-iwata.webp" class="d-block w-100" alt="Ryoji Iwata">
+						</picture>
+					</div>
+					<div class="carousel-item">
+						<picture>
+							<source srcset="./assets/images/slider/nicholas-green-420.webp" media="(max-width: 420px)">
+							<source srcset="./assets/images/slider/nicholas-green-780.webp" media="(max-width: 780px)">
+							<img src="./assets/images/slider/nicholas-green.webp" class="d-block w-100"
+								alt="Nicholas Green" loading="lazy">
+						</picture>
+					</div>
+					<div class="carousel-item">
+						<picture>
+							<source srcset="./assets/images/slider/edward-cisneros-420.webp" media="(max-width: 420px)">
+							<source srcset="./assets/images/slider/edward-cisneros-780.webp" media="(max-width: 780px)">
+							<img src="./assets/images/slider/edward-cisneros.webp" class="d-block w-100"
+								alt="Edward Cisneros" loading="lazy">
+						</picture>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+					data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+					data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
 			</div>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<picture>
-						<source srcset="./assets/images/slider/ryoji-iwata-420.webp" media="(max-width: 420px)">
-						<source srcset="./assets/images/slider/ryoji-iwata-780.webp" media="(max-width: 780px)">
-						<img src="./assets/images/slider/ryoji-iwata.webp" class="d-block w-100" alt="Ryoji Iwata">
-					</picture>
-				</div>
-				<div class="carousel-item">
-					<picture>
-						<source srcset="./assets/images/slider/nicholas-green-420.webp" media="(max-width: 420px)">
-						<source srcset="./assets/images/slider/nicholas-green-780.webp" media="(max-width: 780px)">
-						<img src="./assets/images/slider/nicholas-green.webp" class="d-block w-100" alt="Nicholas Green"
-							loading="lazy">
-					</picture>
-				</div>
-				<div class="carousel-item">
-					<picture>
-						<source srcset="./assets/images/slider/edward-cisneros-420.webp" media="(max-width: 420px)">
-						<source srcset="./assets/images/slider/edward-cisneros-780.webp" media="(max-width: 780px)">
-						<img src="./assets/images/slider/edward-cisneros.webp" class="d-block w-100"
-							alt="Edward Cisneros" loading="lazy">
-					</picture>
-				</div>
-			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-				data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-				data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
 		</div>
-	</div>
-	<div id="about">
+	</header>
+	<section id="about">
 		<div class="picture left">
 			<picture>
 				<source srcset="./assets/images/nina-420.webp" media="(max-width: 420px)">
@@ -107,8 +109,8 @@
 				technique. Rendre ces moments immortels, afin que vous puissiez y puiser de l’amour, du bonheur, de la
 				tendresse et de lumière à chaque fois que vous poserez les yeux sur vos photos.</p>
 		</div>
-	</div>
-	<div id="gallery">
+	</section>
+	<section id="gallery">
 		<h2 class="title">Portfolio</h2>
 		<div class="container py-3">
 			<div class="gallery" style="display: none">
@@ -139,20 +141,22 @@
 				<blockquote>
 					<p class="quote__text">Un portrait n’est pas une ressemblance. Dès lors qu’une émotion ou qu’un
 						fait est traduit en photo, il cesse d’être un fait pour devenir une opinion. L’inexactitude
-						n’existe pas en photographie. Toutes les photos sont exactes. Aucune d’elles n’est la vérité.
+						n’existe pas en photographie. Toutes les photos sont exactes. Aucune d’elles n’est la
+						vérité.
 					</p>
 				</blockquote>
 				<figcaption class="quote__author">- Richard Avedon</figcaption>
 			</figure>
 		</div>
-	</div>
-	<div id="services">
+	</section>
+	<section id="services">
 		<h2 class="title">Mes services</h2>
 		<div class="container">
 			<div class="service">
 				<div class="service__description">
 					<h3>Shooting photo</h3>
-					<p>Pour capturer vos moments les plus précieux et garder un souvenir impérissable. Je me déplace en
+					<p>Pour capturer vos moments les plus précieux et garder un souvenir impérissable. Je me déplace
+						en
 						Île-de-France pour réaliser vos photos</p>
 				</div>
 				<div class="service__price">
@@ -175,7 +179,8 @@
 			<div class="service">
 				<div class="service__description">
 					<h3>Album photos</h3>
-					<p>Partagez avec vos proches et vos clients les photos des moments partagés ensemble à travers un
+					<p>Partagez avec vos proches et vos clients les photos des moments partagés ensemble à travers
+						un
 						album photo personnalisé</p>
 				</div>
 				<div class="service__price">
@@ -184,8 +189,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="quote">
+	</section>
+	<aside class="quote">
 		<figure>
 			<blockquote>
 				<p class="quote__text">De manière inconsciente, je crois, je guette un regard, une expression, des
@@ -193,8 +198,8 @@
 			</blockquote>
 			<figcaption class="quote__author">- Richard Avedon</figcaption>
 		</figure>
-	</div>
-	<div id="contact">
+	</aside>
+	<footer id="contact">
 		<div class="container">
 			<div class="form-container">
 				<h2>Une question ? Une demande de devis ?</h2>
@@ -213,7 +218,7 @@
 				<img src="./assets/images/camera.webp" alt="Camera" loading="lazy">
 			</div>
 		</div>
-	</div>
+	</footer>
 </body>
 
 </html>
