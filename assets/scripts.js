@@ -1,4 +1,5 @@
-$(document).ready(function () {
+// a modifier
+document.ready(function () {
 	$(".gallery").mauGallery({
 		columns: {
 			xs: 1,
