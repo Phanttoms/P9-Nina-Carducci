@@ -354,3 +354,18 @@ input[type="submit"] {
 		width: 80%;
 	}
 }
+
+.fade-in {
+	animation-name: fadeIn;
+	animation-duration: 0.3s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+	from {
+		width: 0;
+	}
+	to {
+		width: 1;
+	}
+}

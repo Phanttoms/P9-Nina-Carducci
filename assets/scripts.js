@@ -67,15 +67,11 @@ function navFilter() {
 		"Portrait",
 	];
 	const boxFilter = document.createElement("ul");
-	boxFilter.classList.add("my-4");
-	boxFilter.classList.add("tags-bar");
-	boxFilter.classList.add("nav");
-	boxFilter.classList.add("nav-pills");
+	boxFilter.classList.add("my-4", "tags-bar", "nav", "nav-pills");
 
 	for (let i = 0; i < filterCategorie.length; i++) {
 		const elementLi = document.createElement("li");
-		elementLi.classList.add("nav-item");
-		elementLi.classList.add("active");
+		elementLi.classList.add("nav-item", "active");
 
 		const elementSpan = document.createElement("span");
 		elementSpan.id = filterCategorie[i];
@@ -91,50 +87,68 @@ function navFilter() {
 
 navFilter();
 
-const filter = document.querySelectorAll(".nav-link");
+function showFilter(a, b) {
+	b.forEach(function (item) {
+		if (a === "Tous" || item.classList.contains(a)) {
+			item.style.display = "block";
+			item.classList.add("fade-in");
+		} else {
+			item.style.display = "none";
+		}
+	});
+}
 
-filter.forEach(function (element) {
-	element.addEventListener("click", function () {
-		const ifFilter = element.getAttribute("id");
-		filter.forEach(function (btn) {
-			btn.classList.remove("active-tag");
-			btn.classList.remove("active");
-		});
+function buttonFilter() {
+	const filter = document.querySelectorAll(".nav-link");
 
-		element.classList.add("active-tag");
-		element.classList.add("active");
+	document.addEventListener("DOMContentLoaded", function () {
+		const allFilter = document.querySelector('.nav-link[id="Tous"]');
+		allFilter.classList.add("active-tag", "active");
+		allFilter.click();
+	});
 
-		const gallerieItems = document.querySelectorAll(".gallery-item");
-		gallerieItems.forEach(function (item) {
-			if (ifFilter === "Tous" || item.classList.contains(ifFilter)) {
-				item.style.display = "block";
-			} else {
-				item.style.display = "none";
-			}
+	filter.forEach(function (element) {
+		const idFilter = element.getAttribute("id");
+		element.addEventListener("click", function () {
+			filter.forEach(function (btn) {
+				btn.classList.remove("active-tag", "active");
+			});
+
+			galleryContent.innerHTML = "";
+			element.classList.add("active-tag", "active");
+
+			const gallerieItems = document.querySelectorAll(".gallery-item");
+			const divImg = document.querySelectorAll(".item-column");
+			showFilter(idFilter, gallerieItems);
+			showFilter(idFilter, divImg);
 		});
 	});
-});
+	galleryContent();
+}
+
+buttonFilter();
 
 // Fonction pour afficher la gallerie
 function galleryContent() {
 	const boxGallery = document.createElement("div");
-	boxGallery.classList.add("gallery-items-row");
-	boxGallery.classList.add("row");
+	boxGallery.classList.add("gallery-items-row", "row");
 
 	images.forEach(function (img) {
 		const boxImg = document.createElement("div");
-		boxImg.classList.add("item-column");
-		boxImg.classList.add("mb-4");
-		boxImg.classList.add("col-12");
-		boxImg.classList.add("col-sm-6");
-		boxImg.classList.add("col-md-4");
-		boxImg.classList.add("col-lg-4");
-		boxImg.classList.add("col-xl-4");
+		boxImg.classList.add(
+			"item-column",
+			"mb-4",
+			"col-12",
+			"col-sm-6",
+			"col-md-4",
+			"col-lg-4",
+			"col-xl-4",
+			img.categorie
+		);
+		boxImg.style.display = "none";
 
 		const contentImg = document.createElement("img");
-		contentImg.classList.add("gallery-item");
-		contentImg.classList.add("img-fluid");
-		contentImg.classList.add(img.categorie);
+		contentImg.classList.add("gallery-item", "img-fluid", img.categorie);
 		contentImg.style.display = "none";
 		contentImg.src = img.src;
 
@@ -145,4 +159,54 @@ function galleryContent() {
 	gallery.appendChild(boxGallery);
 }
 
-galleryContent();
+// galleryContent();
+
+// Fonction Modal
+// const gallerieItems = document.querySelectorAll(".gallery-item");
+// gallerieItems.forEach(function (item) {
+// 	item.addEventListener("click", function () {
+// 		openModal();
+// 	});
+// });
+
+// function openModal() {
+// 	modal();
+// }
+
+// function closeModal() {
+
+// }
+
+// function modal(imageUrl) {
+// 	const lightBox = document.createElement("div");
+// 	lightBox.classList.add("modal", "fade", "show");
+
+// 	const modalDialog = document.createElement("div");
+// 	modalDialog.classList.add("modal-dialog");
+// 	lightBox.appendChild(modalDialog);
+
+// 	const modalContent = document.createElement("div");
+// 	modalContent.classList.add("modal-content");
+// 	modalDialog.appendChild(modalContent);
+
+// 	const modalBody = document.createElement("div");
+// 	modalBody.classList.add("modal-body");
+// 	modalContent.appendChild(modalBody);
+
+// 	const prevButton = document.createElement("div");
+// 	prevButton.textContent = "<";
+// 	prevButton.classList.add("mg-prev");
+// 	modalBody.appendChild(prevButton);
+
+// 	const imgModal = document.createElement("img");
+// 	imgModal.setAttribute("src", imageUrl);
+// 	imgModal.classList.add("lightboxImage", "img-fluid");
+// 	modalBody.appendChild(imgModal);
+
+// 	const nextButton = document.createElement("div");
+// 	nextButton.textContent = ">";
+// 	nextButton.classList.add("mg-prev");
+// 	modalBody.appendChild(nextButton);
+
+// 	gallery.appendChild(lightBox);
+// }
