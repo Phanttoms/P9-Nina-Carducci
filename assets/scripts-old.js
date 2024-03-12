@@ -1,4 +1,3 @@
-// a modifier
 document.ready(function () {
 	$(".gallery").mauGallery({
 		columns: {

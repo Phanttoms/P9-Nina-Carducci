@@ -113,8 +113,6 @@ function buttonFilter() {
 			filter.forEach(function (btn) {
 				btn.classList.remove("active-tag", "active");
 			});
-
-			galleryContent.innerHTML = "";
 			element.classList.add("active-tag", "active");
 
 			const gallerieItems = document.querySelectorAll(".gallery-item");
