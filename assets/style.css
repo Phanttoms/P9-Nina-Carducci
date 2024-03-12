@@ -371,6 +371,26 @@ input[type="submit"] {
 	}
 }
 
+@keyframes fadeInModal {
+	from {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(-50%);
+	}
+}
+
+@keyframes fadeInOverlay {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 .custom-modal-container {
 	display: none;
 	position: fixed;
@@ -389,6 +409,7 @@ input[type="submit"] {
 	width: 100%;
 	height: 100%;
 	background: #333333d3;
+	animation: fadeInOverlay 0.3s ease-in-out forwards;
 }
 
 .custom-modal {
@@ -399,12 +420,13 @@ input[type="submit"] {
 	background: #fff;
 	border-radius: 5px;
 	position: absolute;
-	top: 40%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	top: 45%;
+	left: 31%;
+	transform: translateX(-50%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	animation: fadeInModal 0.3s ease-in-out forwards;
 }
 
 .modal-open {
@@ -430,4 +452,9 @@ input[type="submit"] {
 
 .arrowModalRight {
 	right: -4%;
+}
+
+.modal-trigger,
+.nav-item {
+	cursor: pointer;
 }

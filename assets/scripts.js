@@ -81,6 +81,8 @@ const filters = [
 // Récupération de la gallerie
 const gallery = document.querySelector(".gallery");
 
+let filteredImages = images;
+
 // Creation des filtres
 function createFilter(param) {
 	const ulFilter = document.createElement("ul");
@@ -117,20 +119,6 @@ function activeFilter() {
 }
 
 activeFilter();
-
-// Creation de la gallerie d'images
-// function createGallery(param) {
-// 	const imgGallery = document.createElement("div");
-// 	imgGallery.classList.add("gallery-items-row", "row");
-
-// 	param.forEach((element) => {
-// 		imgGallery.innerHTML += `<div class="item-column mb-4 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 modal-trigger" data-gallery-tag="${element.category}"><img class="gallery-item img-fluid ${element.category} modal-trigger" data-gallery-tag="${element.category}" src="${element.src}" alt="${element.alt}" loading="lazy"></div>`;
-// 	});
-
-// 	gallery.appendChild(imgGallery);
-// }
-
-// createGallery(images);
 
 //test creation gallerie --------------------------------------------------------------
 // Creation de la gallerie d'images
@@ -198,12 +186,15 @@ function useFilter() {
 	filtre.forEach((element) => {
 		const idFilter = element.getAttribute("data-images-toggle");
 		element.addEventListener("click", () => {
+			// Réinitialiser l'index currentImageIndex lorsque vous changez de catégorie
+			currentImageIndex = 0;
+
 			// Supprimer les images actuelles de la galerie
 			const imgGallery = document.querySelector(".gallery-items-row");
 			imgGallery.parentNode.removeChild(imgGallery);
 
 			// Récupérer les images correspondant au filtre sélectionné
-			const filteredImages = images.filter(
+			filteredImages = images.filter(
 				(img) => img.category === idFilter || idFilter === "Tous"
 			);
 
@@ -223,6 +214,9 @@ useFilter();
 
 //test creation gallerie et modal ---------------------------------------------
 // Fonction pour créer et ouvrir la modal
+let currentImageIndex = 0;
+let currentCategory = "";
+
 function openModal(imageSrc, imageAlt, imageCategory) {
 	const customModal = document.querySelector(".custom-modal");
 	const customModalContainer = document.querySelector(
@@ -231,7 +225,10 @@ function openModal(imageSrc, imageAlt, imageCategory) {
 	const body = document.querySelector("body");
 	body.classList.add("modal-open");
 
-	customModalContainer.classList.add("active");
+	setTimeout(() => {
+		customModalContainer.classList.add("active");
+	}, 50); // Délai de 50 millisecondes avant d'ajouter la classe "active"
+	// customModalContainer.classList.add("active");
 	const modalBox = document.createElement("div");
 	modalBox.classList.add("custom-modal-content");
 	modalBox.innerHTML = `
@@ -245,6 +242,55 @@ function openModal(imageSrc, imageAlt, imageCategory) {
 
 	const modal = document.querySelector(".overlayModal");
 	modal.addEventListener("click", closeModal);
+
+	// Gestionnaire d'événement pour passer à l'image précédente
+	const arrowLeft = document.querySelector(".arrowModalLeft");
+	arrowLeft.addEventListener("click", showPreviousImage);
+
+	// Gestionnaire d'événement pour passer à l'image suivante
+	const arrowRight = document.querySelector(".arrowModalRight");
+	arrowRight.addEventListener("click", showNextImage);
+
+	// Mise à jour des informations sur l'image actuelle
+	currentCategory = imageCategory;
+	currentImageIndex = findImageIndex(imageSrc, imageCategory);
+}
+
+// Fonction pour trouver l'index d'une image dans le tableau images
+function findImageIndex(imageSrc, imageCategory) {
+	return filteredImages.findIndex(
+		(image) => image.src === imageSrc && image.category === imageCategory
+	);
+}
+
+// Fonction pour afficher l'image précédente dans la modal
+function showPreviousImage() {
+	currentImageIndex =
+		(currentImageIndex - 1 + filteredImages.length) % filteredImages.length;
+	console.log("Previous Image Index:", currentImageIndex);
+	console.log("Filtered Images Length:", filteredImages.length);
+	console.log("Previous Image Source:", filteredImages[currentImageIndex].src);
+	updateModalImage();
+}
+
+// Fonction pour afficher l'image suivante dans la modal
+function showNextImage() {
+	currentImageIndex = (currentImageIndex + 1) % filteredImages.length;
+	console.log("Next Image Index:", currentImageIndex);
+	console.log("Filtered Images Length:", filteredImages.length);
+	console.log("Next Image Source:", filteredImages[currentImageIndex].src);
+	updateModalImage();
+}
+
+// Fonction pour mettre à jour l'image affichée dans la modal
+function updateModalImage() {
+	const currentImage = document.querySelector(".imgModal");
+	currentImage.src = filteredImages[currentImageIndex].src;
+	currentImage.alt = filteredImages[currentImageIndex].alt;
+	currentImage.setAttribute(
+		"data-gallery-tag",
+		filteredImages[currentImageIndex].category
+	);
 }
 
 // Fonction pour fermer la modal
