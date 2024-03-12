@@ -119,12 +119,60 @@ function activeFilter() {
 activeFilter();
 
 // Creation de la gallerie d'images
+// function createGallery(param) {
+// 	const imgGallery = document.createElement("div");
+// 	imgGallery.classList.add("gallery-items-row", "row");
+
+// 	param.forEach((element) => {
+// 		imgGallery.innerHTML += `<div class="item-column mb-4 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 modal-trigger" data-gallery-tag="${element.category}"><img class="gallery-item img-fluid ${element.category} modal-trigger" data-gallery-tag="${element.category}" src="${element.src}" alt="${element.alt}" loading="lazy"></div>`;
+// 	});
+
+// 	gallery.appendChild(imgGallery);
+// }
+
+// createGallery(images);
+
+//test creation gallerie --------------------------------------------------------------
+// Creation de la gallerie d'images
 function createGallery(param) {
 	const imgGallery = document.createElement("div");
 	imgGallery.classList.add("gallery-items-row", "row");
 
 	param.forEach((element) => {
-		imgGallery.innerHTML += `<div class="item-column mb-4 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4" data-gallery-tag="${element.category}"><img class="gallery-item img-fluid ${element.category}" data-gallery-tag="${element.category}" src="${element.src}" alt="${element.alt}" loading="lazy"></div>`;
+		const itemColumn = document.createElement("div");
+		itemColumn.classList.add(
+			"item-column",
+			"mb-4",
+			"col-12",
+			"col-sm-6",
+			"col-md-4",
+			"col-lg-4",
+			"col-xl-4"
+		);
+		itemColumn.setAttribute("data-gallery-tag", element.category);
+
+		const image = document.createElement("img");
+		image.classList.add(
+			"gallery-item",
+			"img-fluid",
+			element.category,
+			"modal-trigger"
+		);
+		image.setAttribute("data-gallery-tag", element.category);
+		image.setAttribute("src", element.src);
+		image.setAttribute("alt", element.alt);
+		image.setAttribute("loading", "lazy");
+
+		// Ajout d'un gestionnaire d'événement de clic à chaque image pour ouvrir la modal
+		image.addEventListener("click", function () {
+			const imageSrc = this.getAttribute("src");
+			const imageAlt = this.getAttribute("alt");
+			const imageCategory = this.getAttribute("data-gallery-tag");
+			openModal(imageSrc, imageAlt, imageCategory);
+		});
+
+		itemColumn.appendChild(image);
+		imgGallery.appendChild(itemColumn);
 	});
 
 	gallery.appendChild(imgGallery);
@@ -172,3 +220,41 @@ function useFilter() {
 }
 
 useFilter();
+
+//test creation gallerie et modal ---------------------------------------------
+// Fonction pour créer et ouvrir la modal
+function openModal(imageSrc, imageAlt, imageCategory) {
+	const customModal = document.querySelector(".custom-modal");
+	const customModalContainer = document.querySelector(
+		".custom-modal-container"
+	);
+	const body = document.querySelector("body");
+	body.classList.add("modal-open");
+
+	customModalContainer.classList.add("active");
+	const modalBox = document.createElement("div");
+	modalBox.classList.add("custom-modal-content");
+	modalBox.innerHTML = `
+                <div class="modal-body">
+                    <span class="arrowModal arrowModalLeft"><</span>
+                    <img class="imgModal" src="${imageSrc}" alt="${imageAlt}" data-gallery-tag="${imageCategory}">
+					<span class="arrowModal arrowModalRight">></span>
+                </div>
+			`;
+	customModal.appendChild(modalBox);
+
+	const modal = document.querySelector(".overlayModal");
+	modal.addEventListener("click", closeModal);
+}
+
+// Fonction pour fermer la modal
+function closeModal() {
+	const cleanModal = document.querySelector(".custom-modal-content");
+	const disableModal = document.querySelector(".custom-modal-container");
+	const body = document.querySelector("body");
+
+	body.classList.remove("modal-open");
+
+	disableModal.classList.remove("active");
+	cleanModal.parentNode.removeChild(cleanModal);
+}
