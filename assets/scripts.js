@@ -81,6 +81,7 @@ const filters = [
 // Récupération de la gallerie
 const gallery = document.querySelector(".gallery");
 
+// Sauvegarde des images actuel en fonction du filtre actif
 let filteredImages = images;
 
 // Creation des filtres
@@ -120,13 +121,13 @@ function activeFilter() {
 
 activeFilter();
 
-//test creation gallerie --------------------------------------------------------------
-// Creation de la gallerie d'images
+// Creation de la gallerie d'images et ecouteur d'evenement pour ouvertur de la modal
 function createGallery(param) {
 	const imgGallery = document.createElement("div");
 	imgGallery.classList.add("gallery-items-row", "row");
 
 	param.forEach((element) => {
+		// Creation de la balise qui va contenir les images
 		const itemColumn = document.createElement("div");
 		itemColumn.classList.add(
 			"item-column",
@@ -139,6 +140,7 @@ function createGallery(param) {
 		);
 		itemColumn.setAttribute("data-gallery-tag", element.category);
 
+		// Creation de la balise image
 		const image = document.createElement("img");
 		image.classList.add(
 			"gallery-item",
@@ -212,8 +214,7 @@ function useFilter() {
 
 useFilter();
 
-//test creation gallerie et modal ---------------------------------------------
-// Fonction pour créer et ouvrir la modal
+// Fonction pour créer la modal
 let currentImageIndex = 0;
 let currentCategory = "";
 
@@ -267,18 +268,12 @@ function findImageIndex(imageSrc, imageCategory) {
 function showPreviousImage() {
 	currentImageIndex =
 		(currentImageIndex - 1 + filteredImages.length) % filteredImages.length;
-	console.log("Previous Image Index:", currentImageIndex);
-	console.log("Filtered Images Length:", filteredImages.length);
-	console.log("Previous Image Source:", filteredImages[currentImageIndex].src);
 	updateModalImage();
 }
 
 // Fonction pour afficher l'image suivante dans la modal
 function showNextImage() {
 	currentImageIndex = (currentImageIndex + 1) % filteredImages.length;
-	console.log("Next Image Index:", currentImageIndex);
-	console.log("Filtered Images Length:", filteredImages.length);
-	console.log("Next Image Source:", filteredImages[currentImageIndex].src);
 	updateModalImage();
 }
 
