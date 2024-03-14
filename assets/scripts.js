@@ -229,7 +229,6 @@ function openModal(imageSrc, imageAlt, imageCategory) {
 	setTimeout(() => {
 		customModalContainer.classList.add("active");
 	}, 50); // Délai de 50 millisecondes avant d'ajouter la classe "active"
-	// customModalContainer.classList.add("active");
 	const modalBox = document.createElement("div");
 	modalBox.classList.add("custom-modal-content");
 	modalBox.innerHTML = `
